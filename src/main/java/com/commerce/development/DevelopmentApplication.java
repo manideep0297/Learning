@@ -24,6 +24,10 @@ order -> servent -> kitchen (chef) -> fridge(ingredents) -> goto market to get i
                     view -> to make the data look clean & user friendly (JSP/React)
                     Model -> whatever the data that is going in between we call it as model
 
+20 rows
 
+10 rows
+
+<table>10 rows</table>
 
  */

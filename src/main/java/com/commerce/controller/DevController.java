@@ -1,19 +1,23 @@
 package com.commerce.controller;
 
+import com.commerce.Entity.User;
+import com.commerce.Entity.UserResponse;
 import com.commerce.service.DevService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class DevController {
 
     // interface reference
-    private DevService devService;
-
-    public DevController(@Qualifier("teacher") DevService devService) {
-        this.devService = devService;
-    }
+//    private DevService devService;
+//
+//    public DevController(@Qualifier("teacher") DevService devService) {
+//        this.devService = devService;
+//    }
 
     //constructor injection
 
@@ -23,12 +27,138 @@ public class DevController {
 
     @GetMapping("/getData")
     public String getData(){
-        return devService.getData();
+        return "Hello World";
     }
-    @GetMapping("/getSingleData")
-    public String getSingleData(){
-        return devService.getName();
+
+
+    /*
+        application - kdd
+
+        account number -> details
+
+        we will pass account number to form
+
+        customer_id
+
+        /getsingleuser/20
+
+        @PathVariable
+
+
+        controller - we will have redirecting -> service
+        |
+        service - business logic (contioning) -> repository items
+        |
+        repository - we will call to db -> JPA to communicate with DB
+
+        javacode -> hibernate/mybatis/ -> Mysql/oracle
+
+        jdbc -> java database connector
+
+        preparedStatement
+        CallableStatement
+
+        findById() -> internally create an query and execute
+
+        "select * from table where id = "1""
+
+        hql ->
+
+
+
+
+       @RequestParam
+
+       get - not secured - through url
+       post - secured - not url -> payload
+
+     */
+
+    @GetMapping("/getSingleData/{id}/{name}")
+    public String getSingleData(@PathVariable int id){
+        return "";
     }
+   //  /getUserDetails?id=10/
+    @GetMapping("/getUserDetails")
+    public String getUserDetails(@RequestParam(defaultValue = "Guest") String name, @RequestParam int id){
+        if(name == null){
+            // handle invalid cases
+        }
+        return "userDetails";
+    }
+
+    /*
+       POST -> everything secured we will pass data as payload
+
+       login -> password...
+
+       CRUD
+
+       wherever your creating something we go for POST
+
+
+       request.getParameter("");
+
+
+
+       payload we will have all the in body
+
+       url -> http:localhost:8080/createUser
+       Method -> POST
+       Header -> all header related details
+       body -> raw data
+       {
+           name :
+
+           email :
+
+           address :
+       }
+
+        @RequestBody
+
+
+
+
+
+
+       ResponseEntity -> it is useful to send the custom http responses
+
+       form -> name, email, password, address
+
+       @ResponseBody -> to convert to java object to json format to show it to userr
+
+     */
+
+    /*
+      request -> {
+           name :
+
+           email :
+
+           address :
+       }
+
+       response ->
+       {
+          message : "User created successfully",
+          status : 200
+       }
+
+
+     */
+
+     @PostMapping("/createUser")
+
+     public ResponseEntity<UserResponse> createUser(@RequestBody User user){
+         // return new UserResponse("user created successfully", 100);
+         return new ResponseEntity(new UserResponse("user created successfully", 100), HttpStatus.CREATED);
+     }
+
+     @DeleteMapping("/delete/{id}")
+     public String deleteUser(@PathVariable int id){
+         return "delete user successfully";
+     }
 }
 
 /*

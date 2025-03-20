@@ -1,0 +1,22 @@
+@Controller -
+@SpringBootApplication -
+@Configuration -
+@Service -
+1 @GetMapping -
+  @PathVariable -
+  @RequestParam -
+
+2 @PostMapping -
+  @RequestBody -
+  @ResponseBody -
+  @ResponseEntity -
+
+3 @PutMapping -
+  @RequestBody -
+  @ResponseBody -
+  @ResponseEntity -
+
+4 @DeleteMapping -
+
+@RestController -> @Controller and @ResponseBody
+
