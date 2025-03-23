@@ -1,22 +1,23 @@
-@Controller -
-@SpringBootApplication -
-@Configuration -
-@Service -
-1 @GetMapping -
-  @PathVariable -
-  @RequestParam -
+@Controller - it makes the class as controller and handles web requests. it contains the method which return the data and view(Html).
+@SpringBootApplication - it is used to make the class as main class of spring boot application.
+@Configuration - it contain spring configurations and beans(objects) are created automatically.
+@Service - to make the class as service class in this we write the business logic. this service class is called in controller class.
+1 @GetMapping - it is used to handle get http requests i.e to get the data.
+  @PathVariable - in the pathvariable we need to specify the variable in url and need to be specific sequence it is defined.
+  @RequestParam - in requestparam no need to define variable in url. it will automatically take it
 
-2 @PostMapping -
+2 @PostMapping - it is used to handle get http requests i.e to create the data. i.e to create a new record.
+  @RequestBody - when ever we send data to create a new entry(using post) we send it in json format in body and to convert it into java we use requestbody.
+  @ResponseBody - if you want to return the data from method then we use responsebody and it will convert java object to json and send it in response body
+  @ResponseEntity - using this we can customize the http response code, responseheader and responsebody
+
+3 @PutMapping - it is used to handle put http requests i.e to update a existing record.
   @RequestBody -
   @ResponseBody -
   @ResponseEntity -
 
-3 @PutMapping -
-  @RequestBody -
-  @ResponseBody -
-  @ResponseEntity -
-
-4 @DeleteMapping -
+4 @DeleteMapping - it is used to handle delete http requests i.e to delete the data.
 
 @RestController -> @Controller and @ResponseBody
 
+RestController = controller + responsebody
