@@ -1,0 +1,108 @@
+ Annotation - Done
+
+ IOC - Bean Factory and applicationContext
+ 
+ BeanFactory - Basic Functionalities required for IOC, Bean creation, maintain, lifecycle 
+ ApplicationContext - build on top of bean factory.
+
+
+ it will automatically to load all the required beans and start maintaining
+
+ 3-AnnotationBasedAC/ClasspathXMLaplicationContext/filepathapplicationcontext
+
+
+  classpath and filepath
+
+
+ Configure an normal bean
+
+
+  
+ applicationContext.xml 
+
+ <bean class="com.commerce.Entity.User" name="newUser" />
+
+ @Configuration
+ public class ConfigurationClass{
+   
+    @Bean
+    @Scope("prototype")
+    public User newUser(){
+    return new User(); 
+    }
+ }
+
+once we create an object it will there till application ends
+
+singleton - if u want to share single instance for whole application (design pattern) - you can create your own singleton class (how to create singleton class)?
+ 
+prototype - if u want to create new instance each time
+
+request - for every http request new instance created
+
+session - if you want to create for every new session 
+
+
+User user = new User(); - 0x11263
+User us = new User(); - 0x11263
+
+LLD / HLD - Low level Design/High Level Design
+
+
+IOC container - 
+
+controller bean
+configuration beans
+service bean
+
+
+all these things should be used right? - Dependency Injection (DI) - serves as primary implementation method for IOC
+
+Car - 
+
+2 petrol/Desiel
+
+
+interface Engine{
+  declare basic fucntion of what engine can do.
+}
+
+class petrol implements Engine
+
+class Diesel implements Engine
+
+public Car{
+    @Autowired
+    private Engine engine;
+
+   public Car(@Qualifier("petrol") )Engine engine){ // Injecting Dependency whenever we require something we will get it and inject it 
+      
+}
+
+public setEngine(Engine engine){
+}  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
