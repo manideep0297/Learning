@@ -58,36 +58,84 @@ service bean
 
 all these things should be used right? - Dependency Injection (DI) - serves as primary implementation method for IOC
 
-Car - 
+DataBaseConnection - MySQL, Oracle, PostregSQL, MangoDB .... 
 
-2 petrol/Desiel
+is using MySQL 
 
+MySQL - details
 
-interface Engine{
-  declare basic fucntion of what engine can do.
+interface myConnection{
+   connect();
+   disconnect();
+   ...
 }
 
-class petrol implements Engine
-
-class Diesel implements Engine
-
-public Car{
-    @Autowired
-    private Engine engine;
-
-   public Car(@Qualifier("petrol") )Engine engine){ // Injecting Dependency whenever we require something we will get it and inject it 
-      
+class MySQLConnection implements myConnection{
+   connect(){}
+   disconnect(){}
 }
 
-public setEngine(Engine engine){
-}  
+class MyOracleConnection implements myConnection{
+   connect(){}
+   disconnect(){}
 }
 
 
+DataBaseConnection{
+  
+  private myConnection myConnection;
+
+  // we can store the reference object in the interface reference
+
+  
+  //Constructor Injection
+  public DataBaseConnection(myConnection myconnect){
+    this.myConnection = myconnect;
+  }
+
+
+  myConnecee....
+}
+
+DataConnection dc = new DataConnection(MySQLConnection)
+
+@Repository
+
+- indicates that class is reponsible for interacting with DB
+
+DAO - Data Access Object Classes
+
+@Respository -> enables exception translation -> automatically converts SQLExceptions into Spring DataException
+
+
+
+@Entity -> this is an table in DB
+class User{
+ private int id;
+ private String name;
+}
+
+
+@Service
+{
+ UserRepository.findAll();
+}
+
+
+@Repository
+public interface UserRepository extends JPARepository<User, int>{
+}
 
 
 
 
+Controller -> Service -> Repository 
+
+getUser() -> getUser() -> getAllUsers()
+
+url redirecting -> business logic -> call the DB and execute the required query.
+
+@GetMapping("/user")
 
 
 

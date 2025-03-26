@@ -1,0 +1,28 @@
+Singleton - object created once
+
+Session - DB - 1 
+
+DB - User connection across application
+
+DBConnection dbconnect = new DBConnection();  //
+DBConnection dbconnect1 = new DBConnection(); //
+
+1 object - should not be different
+
+
+class DBConnection{
+private static DBConnection instace = null;
+   private DBConnection(){
+ 
+   }
+
+  static DBConnection getInstance(){
+     if(instace == null){
+       instace = new DBConnection();
+     }
+     return instace;
+   }
+}
+
+DBConnection dbconnect = DBconnection.getInstance();
+DBConnection dbconnect1 = DBconnection.getInstance();
