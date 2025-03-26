@@ -14,3 +14,10 @@ public class Teacher implements DevService{
         return "This is a Teacher data we are calling";
     }
 }
+/*
+   JPA -?
+
+   ORM -?
+
+   Hibernate/myBatis -?+
+ */
