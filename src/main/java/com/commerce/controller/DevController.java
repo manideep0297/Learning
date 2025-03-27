@@ -1,8 +1,10 @@
 package com.commerce.controller;
 
+import com.commerce.Entity.Product;
 import com.commerce.Entity.User;
 import com.commerce.Entity.UserResponse;
 import com.commerce.service.DevService;
+import com.commerce.service.FakeService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,26 +14,48 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class DevController {
 
-    // interface reference
-//    private DevService devService;
-//
-//    public DevController(@Qualifier("teacher") DevService devService) {
-//        this.devService = devService;
-//    }
+    //This is dependency Injection
 
-    //constructor injection
+    private DevService devService;
 
-    //field injection
+    public DevController(@Qualifier("Student") DevService devService) {
+        this.devService = devService;
+    }
 
-    //setter injection
+    private FakeService fakeService;
+
+    public DevController(FakeService fakeService) {
+        this.fakeService = fakeService;
+    }
 
     @GetMapping("/getData")
     public String getData(){
-        return "Hello World";
+        return devService.getData();
+    }
+
+    @GetMapping("/getSingleData/{id}/{name}")
+    public String getSingleData(@PathVariable int id){
+        return devService.getName();
+    }
+
+    @GetMapping("/getUserDetails")
+    public String getUserDetails(@RequestParam(defaultValue = "Guest") String name, @RequestParam int id){
+        if(name == null){
+            // handle invalid cases
+        }
+        return "userDetails";
     }
 
 
+    @GetMapping("/getProduct/{id}")
+    public Product getSingleProduct(@PathVariable int id){
+        return fakeService.getProduct(id);
+    }
+
     /*
+
+    /getProduct/1 -> service(FakeStoreService) -> hit fakestoreAPI call -> fetch data
+
         application - kdd
 
         account number -> details
@@ -73,19 +97,6 @@ public class DevController {
        post - secured - not url -> payload
 
      */
-
-    @GetMapping("/getSingleData/{id}/{name}")
-    public String getSingleData(@PathVariable int id){
-        return "";
-    }
-   //  /getUserDetails?id=10/
-    @GetMapping("/getUserDetails")
-    public String getUserDetails(@RequestParam(defaultValue = "Guest") String name, @RequestParam int id){
-        if(name == null){
-            // handle invalid cases
-        }
-        return "userDetails";
-    }
 
     /*
        POST -> everything secured we will pass data as payload
