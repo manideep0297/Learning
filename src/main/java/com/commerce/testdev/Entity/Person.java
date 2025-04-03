@@ -44,14 +44,16 @@ public class Person {
     @ManyToOne
     @JoinColumn(name = "university_id")
     private University university;
+    // many person
+    // Eager
 
-    public University getUniversity() {
-        return university;
-    }
-
-    public void setUniversity(University university) {
-        this.university = university;
-    }
+//    public University getUniversity() {
+//        return university;
+//    }
+//
+//    public void setUniversity(University university) {
+//        this.university = university;
+//    }
 
 }
 

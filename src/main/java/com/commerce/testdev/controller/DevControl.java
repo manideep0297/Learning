@@ -1,6 +1,7 @@
 package com.commerce.testdev.controller;
 
 import com.commerce.testdev.Entity.*;
+import com.commerce.testdev.service.CollegeService;
 import com.commerce.testdev.service.DevService;
 import com.commerce.testdev.service.FakeService;
 import com.commerce.testdev.service.ProductService;
@@ -21,6 +22,9 @@ public class DevControl {
     }
 
     private ProductService productService;
+
+    @Autowired
+    private CollegeService collegeService;
 
 //    public DevControl(ProductService productService){
 //        this.productService = productService;
@@ -70,6 +74,11 @@ public class DevControl {
     @GetMapping("/getPerson/{id}")
     public Person getPerson(@PathVariable int id){
         return productService.getPerson(id);
+    }
+
+    @GetMapping("/getStudent")
+    public Student getStudent(@RequestParam int id){
+        return collegeService.getStudent(id);
     }
 
 
