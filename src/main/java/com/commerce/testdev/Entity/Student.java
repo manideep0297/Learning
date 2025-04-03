@@ -9,7 +9,8 @@ import java.util.List;
 @Table(name="students")
 public class Student {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="std_id")
+    @SequenceGenerator(name="std_id", sequenceName = "id", allocationSize=1)
     private int id;
     private String name;
 
@@ -58,15 +59,18 @@ public class Student {
 /*
 your task -
 
-how many type of GeneratedValues are present?
+how many type of GeneratedValues are present? - done
 
-diffence between jpa and crud repository and if other repostries are present
+diffence between jpa and crud repository and if other repostries are present - pending
 
 @Transacation other annotation majorly we use...
+- pending
 
 how to use post? -> what are methods we have / different stages of db in spring(persist, update)
+-pending
 
-@Pangination -
+@Pangination
+-pending
 
 s - c
 1   m
@@ -90,4 +94,20 @@ new table for mapping
      2          1
      1          2
      2          2
+
+
+     how many types of relations?
+
+     4 - OneToOne/OneToMany/ManyToOne/ManyToMany
+     Entity
+     Id / primary
+     EmbeddedId - revise
+     @JoinColumn
+     @column
+     @Table(name="")
+     JpaRepository
+     methods we use in jpaRepository (findById, findByName etc)
+
+
+     OneToOne - when one entity is related with other unique entity
  */
