@@ -61,16 +61,17 @@ your task -
 
 how many type of GeneratedValues are present? - done
 
-diffence between jpa and crud repository and if other repostries are present - pending
+diff between jpa and crud repository and if other repostries are present - pending
 
-@Transacation other annotation majorly we use...
+@Transaction other annotation majorly we use...
 - pending
 
-how to use post? -> what are methods we have / different stages of db in spring(persist, update)
+how to use Put/delete? -> what are methods we have / different stages of db in spring(persist, update)
 -pending
 
-@Pangination
--pending
+pagination
+
+1 2 3 4 5 6 7 8
 
 s - c
 1   m

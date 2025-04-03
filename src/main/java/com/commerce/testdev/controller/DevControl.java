@@ -1,12 +1,13 @@
 package com.commerce.testdev.controller;
 
 import com.commerce.testdev.Entity.*;
-import com.commerce.testdev.service.CollegeService;
-import com.commerce.testdev.service.DevService;
-import com.commerce.testdev.service.FakeService;
-import com.commerce.testdev.service.ProductService;
+import com.commerce.testdev.Entity.Student;
+import com.commerce.testdev.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class DevControl {
 
     @Autowired
     private CollegeService collegeService;
+
+    @Autowired
+    private CustomerService customerService;
 
 //    public DevControl(ProductService productService){
 //        this.productService = productService;
@@ -80,6 +84,35 @@ public class DevControl {
     public Student getStudent(@RequestParam int id){
         return collegeService.getStudent(id);
     }
+
+    @PostMapping("/createCustomer")
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer){
+        Customer customer1 = customerService.create_Customer(customer);
+        if(customer1 != null){
+            return ResponseEntity.status(HttpStatus.CREATED).body(customer1);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+
+    @GetMapping("/getAllCustomers")
+    public Page<Customer> getAllCustomers(@PageableDefault(size = 5) Pageable pageable){
+        return customerService.getAllCustomers(pageable);
+    }
+
+    /*
+    what is post mapping -> why we use
+
+    for creating new records
+
+    @PostMapping
+
+    what are the things we pass
+
+    @RequestBody
+
+
+     */
 
 
 

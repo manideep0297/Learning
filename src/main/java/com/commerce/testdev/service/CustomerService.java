@@ -1,0 +1,25 @@
+package com.commerce.testdev.service;
+
+import com.commerce.testdev.Entity.Customer;
+import com.commerce.testdev.repository.CustomerDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CustomerService {
+
+    @Autowired
+    private CustomerDAO customerDAO;
+    //field DI
+
+    public Customer create_Customer(Customer customer) {
+        Customer customer1 = customerDAO.save(customer);
+        return customer1;
+    }
+
+    public Page<Customer> getAllCustomers(Pageable pageable){
+        return customerDAO.findAll(pageable);
+    }
+}
