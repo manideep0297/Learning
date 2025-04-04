@@ -13,4 +13,8 @@ public interface CustomerDAO extends JpaRepository<Customer, Integer> {
     @Override
     //enable pagination
     Page<Customer> findAll(Pageable pageable);
+
+    Customer  findById(int id);
+
+    Customer deleteById(int id);
 }

@@ -100,6 +100,32 @@ public class DevControl {
         return customerService.getAllCustomers(pageable);
     }
 
+    @PutMapping("/updateCustomer/{id}")
+    public ResponseEntity<Customer> updatecustomer(@PathVariable int id,@RequestBody Customer customer){
+        Customer fnd = customerService.findCustomer(id);
+        if (fnd !=null){
+            fnd.setName(customer.getName());
+            fnd.setAge(customer.getAge());
+            Customer crt = customerService.UpdateCustomer(fnd);
+            return ResponseEntity.status(HttpStatus.OK).body(crt);
+        }
+       return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+
+
+    @DeleteMapping("/deleteCustomer/{id}")
+    public ResponseEntity<Customer> deletecustomer(@PathVariable int id){
+        Customer del = customerService.findCustomer(id);
+        if (del !=null){
+            Customer crt = customerService.DeleteCustomer(id);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+
+
     /*
     what is post mapping -> why we use
 

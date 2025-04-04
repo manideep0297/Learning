@@ -1,0 +1,38 @@
+Basic of Java
+OOPS
+Encapsulation
+Polymorphism
+inheritance
+abstraction
+---?
+interfaces
+abstract classes
+difference between abstract class and interface
+constructors
+copyConstructor....
+static flow
+---?
+instance flow
+---?
+static keyword
+difference between static and instance
+final keyword
+Exception Handling
+try catch finally throw throws
+Collections
+List, ArrayList, Map-(How map internally works), Set, Queue, Stack, PriorityQueue....
+Multi Threading
+wait(), yield(), join(), sleep()
+ExecutorSevice, Future,
+Runnable, Callable ....
+Concurrent Collections
+Arraylist - copyonwriteArray
+...
+JAVA 8 Features
+Predicate
+Functional Interface
+Streams
+java.lang
+difference between stringBuilder and string Builder? ->
+SCP
+HashCode() & equals()

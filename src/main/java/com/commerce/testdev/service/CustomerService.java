@@ -22,4 +22,23 @@ public class CustomerService {
     public Page<Customer> getAllCustomers(Pageable pageable){
         return customerDAO.findAll(pageable);
     }
+
+    public Customer UpdateCustomer(Customer customer){
+        Customer Updatecustomer1 = customerDAO.save(customer);
+        return  Updatecustomer1;
+    }
+
+
+
+    public Customer DeleteCustomer(int id){
+        Customer Updatecustomer4 = customerDAO.deleteById(id);
+        return  Updatecustomer4;
+    }
+
+
+
+    public Customer findCustomer(int id){
+        Customer Updatecustomer2 = customerDAO.findById(id);
+        return  Updatecustomer2;
+    }
 }
