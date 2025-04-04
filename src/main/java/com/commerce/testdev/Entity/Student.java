@@ -113,5 +113,5 @@ new table for mapping
      OneToOne - when one entity is related with other unique entity
 
 
-     
+
  */
