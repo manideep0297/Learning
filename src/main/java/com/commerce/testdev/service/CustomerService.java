@@ -2,6 +2,7 @@ package com.commerce.testdev.service;
 
 import com.commerce.testdev.Entity.Customer;
 import com.commerce.testdev.repository.CustomerDAO;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,9 +37,35 @@ public class CustomerService {
     }
 
 
-
+    @Transactional
     public Customer findCustomer(int id){
         Customer Updatecustomer2 = customerDAO.findById(id);
         return  Updatecustomer2;
     }
 }
+/*
+
+
+Spring MVC
+RESTApi
+Spring Data
+
+
+
+GTA -----
+
+start-----------------save------------
+
+multiple tables
+
+Person - up
+university - up
+address - stopped
+
+commit / Rollback
+
+@Transactional - annotation
+
+
+successfully -
+ */
