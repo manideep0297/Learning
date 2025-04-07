@@ -36,3 +36,59 @@ java.lang
 difference between stringBuilder and string Builder? ->
 SCP
 HashCode() & equals()
+
+
+
+
+FunctionalInterface -
+is a interface which has only single abstract method can be useful in lambda exp, stream, method references.
+
+ @FunctionalInterface
+ interface Adding{
+  int add(int a, int b);//every method in interface is public abstract
+ }
+
+ Adding adder = (a, b) -> a + b;
+ adder.add(10,20);
+
+ Predicate -> test()
+
+ 1 -> 10
+
+ stream.filter(n -> n%2 == 0)//perdicated
+
+ Product::AddCart()
+
+ IntStream
+
+ Multi Threading ->
+
+ allowing mutliple tasks/process to happen in parallel
+
+ Thread t = new thread()
+
+ ExecutorService -> to define how many threads to use -> 5
+
+ Fixed / cached
+
+ 5 -> only uses 5
+
+ Exexutors.newFixedThreadPool(5);
+ Executors.newCachedThreadPool();
+
+ hashcode & equals
+
+ Map-> when we are inserting it will call hashcode on key to generate hashcode value and use it to index the bucket(put)
+ put(key, value)
+       2
+ b1 -> b2 -> b3
+
+ get(key) -> equals method -> generate keys hashcode to detech the bucket
+
+
+ == -> reference compare
+
+ obj -> hashcode
+
+ obj -> hashcode
+
