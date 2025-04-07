@@ -1,5 +1,6 @@
 package com.ecommorce.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -49,10 +50,13 @@ public class Products {
         this.quantity = quantity;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="cid")
     public  Category category;
     public double price;
     public int quantity;
 
 }
+
+//  DB -> filter -> DTO
+//  DB -> user json -> filter

@@ -1,6 +1,7 @@
 package com.ecommorce.Service;
 
 import com.ecommorce.Entity.Products;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class AddCartService {
         listProd.remove(product);
     }
 
+    @Transactional
     public List<Products> getListProd(){
         return listProd;
     }
