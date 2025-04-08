@@ -3,7 +3,9 @@ package com.ecommorce.controller;
 import com.ecommorce.Entity.Products;
 import com.ecommorce.Service.AddCartService;
 import com.ecommorce.Service.ProductService;
+import com.ecommorce.Service.UserService;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.ecommorce.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,10 @@ public class ECommerceController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private UserService userService;
+
+
 
 
     @PostMapping("/addToCart")
@@ -34,6 +40,14 @@ public class ECommerceController {
     }
 
    // anirudh implements delete mapping
+    @DeleteMapping("/deleteitem")
+    public Products delproduct(int pid){
+        Products del1 = productService.deleteprod(pid);
+        if(del1!=null){
+            return del1;
+        }
+        return null;
+    }
 
 
     @GetMapping("/getAllCarts")
@@ -41,7 +55,25 @@ public class ECommerceController {
         return addCartService.getListProd();
     }
 
+    @PostMapping("/creatuser")
+    public User newuser(@RequestBody User user){
+        User userService1 = userService.createuser(user);
+        return userService1;
+    }
+
+    @GetMapping("/getuser/{id}")
+    public User Vefuser(@PathVariable int uid){
+        User userService2 = userService.Verifyuser(uid);
+        if(userService2!= null){
+            return userService2;
+        }
+        return null;
+    }
+
 }
+
+
+
 
 /*
 Basic E-Commerce
