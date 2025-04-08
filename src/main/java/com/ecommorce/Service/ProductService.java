@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,4 +19,10 @@ public class ProductService {
     public Optional<Products> exists(int productId) {
         return productDAO.findById(productId);
     }
+
+
+    public List<Products> listofproducts(){
+        return productDAO.findAll();
+    }
+
 }
