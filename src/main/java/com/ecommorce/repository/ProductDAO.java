@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ProductDAO extends JpaRepository<Products, Integer> {
-   // Products findById(int id);
+    Products findById(int pid);
     List<Products> findAll();
 }

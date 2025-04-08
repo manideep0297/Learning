@@ -19,8 +19,8 @@ public class UserService {
     public UserDAO userDAO;
 
     public User createuser(User user){
-         User user1 = userDAO.save();
-         return user1;
+        User user1 = userDAO.save();
+        return user1;
     }
 
     public  User Verifyuser(int uid){
@@ -29,7 +29,7 @@ public class UserService {
     }
 
     public List<Products> userproducts(ProductService productService){
-         List<Products> productService1 = productService.listofproducts();
-         return productService1;
+        List<Products> productService1 = productService.listofproducts();
+        return productService1;
     }
 }
