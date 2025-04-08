@@ -1,16 +1,20 @@
 package com.ecommorce.controller;
 
 import com.ecommorce.Entity.Products;
+import com.ecommorce.Exception.SearchProductIsNull;
+import com.ecommorce.Exception.UserIsNull;
 import com.ecommorce.Service.AddCartService;
 import com.ecommorce.Service.ProductService;
 import com.ecommorce.Service.UserService;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.ecommorce.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,11 +44,11 @@ public class ECommerceController {
     }
 
    // anirudh implements delete mapping
-    @DeleteMapping("/deleteitem")
-    public Products delproduct(int pid){
-        Products del1 = productService.deleteprod(pid);
-        if(del1!=null){
-            return del1;
+    @DeleteMapping("/deleteitem/{id}")
+    public Products delProduct(int p_id){
+        Products deleteProduct = productService.deleteProduct(p_id);
+        if(deleteProduct != null){
+            return deleteProduct;
         }
         return null;
     }
@@ -57,18 +61,49 @@ public class ECommerceController {
 
     @PostMapping("/creatuser")
     public User newuser(@RequestBody User user){
-        User userService1 = userService.createuser(user);
-        return userService1;
+        if(user != null && user.getUname() != null && user.getPassword() != null) {
+            User user1 = userService.createUser(user);
+            return user1;
+        }else {
+            System.out.println("I am here");
+            throw new UserIsNull("You entered null Exception");
+        }
     }
 
     @GetMapping("/getuser/{id}")
-    public User Vefuser(@PathVariable int uid){
-        User userService2 = userService.Verifyuser(uid);
-        if(userService2!= null){
-            return userService2;
+    public User verifyUser(@PathVariable int u_id){
+        User user = userService.Verifyuser(u_id);
+        if(user != null){
+            return user;
         }
         return null;
     }
+
+    //This is to get all products
+    @GetMapping("/getAllProducts")
+    public Page<Products> getAllProducts(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "2") int size,@RequestParam(defaultValue = "pid") String sort) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+        return productService.listOfProducts(pageable);
+    }
+
+    /*
+    Page
+
+    @Pagination
+     */
+
+    //This is to search product by Name
+    @GetMapping("/searchProduct")
+    public List<Products> searchProduct(@RequestParam(defaultValue = "") String name){
+        if(name.length()>0 && name != null)
+        return productService.searchProduct(name);
+        else
+            throw new SearchProductIsNull("Please enter proper product to search");
+    }
+
+
+
+
 
 }
 
@@ -76,24 +111,45 @@ public class ECommerceController {
 
 
 /*
+
+
+
+
 Basic E-Commerce
 
 basics of java -> core in which part we need to use...
 
   Requirements
   ============
-   products - id, name, catogery, price, quantity
-   catogery - cid, cname
+  - products - id, name, catogery, price, quantity
+  - catogery - cid, cname
 
-   AddCart -> we need to implement
+  - AddCart -> we need to implement
 
    payment -> we need to implement
 
-   User - username, userid, password
+  - User - username, userid, password
 
    Orders -> we need to show orders -> orderid, noofitems, person_id,list of products
 
-   search / sort / pagination / filter
+  - search / sort / pagination / filter
+
+  - Exception Handling - for all the methods
+
+  Login / Security (Spring Security)
+
+  Custom Queries
+
+  Session Handling
+
+  AOP (Optional)
+
+
+
+  MicroServices
+
+
+
 
 
  */

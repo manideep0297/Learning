@@ -1,0 +1,22 @@
+Exception handling - the way to handle any interuption in the code
+
+nullpointerException...
+
+This is user ur passing is null please check and pass
+
+@ExceptionHandler
+
+@ControllerAdvice - handling exception globally
+
+Entity - DB
+
+DTO - Data Transfer Objects -> if you want to send specific info to user the we use dto (We can modify whatever data we need to send).
+
+DAO - is to communicate with DB
+
+
+First we create whatever the customExceptionClass u need -> is registerd in GlobalHandlerExpton annotated with @ControllerAdvice and @ExceptionHandler
+
+If u want to send the response in specific format u can use DTO
+
+

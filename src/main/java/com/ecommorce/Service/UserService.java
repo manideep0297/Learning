@@ -11,21 +11,20 @@ import java.util.List;
 @Service
 public class UserService {
 
-    public User user;
-
     @Autowired
     public ProductService productService;
+
     @Autowired
     public UserDAO userDAO;
 
-    public User createuser(User user){
-        User user1 = userDAO.save();
+    public User createUser(User user){
+        User user1 = userDAO.save(user);
         return user1;
     }
 
-    public  User Verifyuser(int uid){
-        User user2 = userDAO.findById(uid);
-        return user2;
+    public User Verifyuser(int u_id){
+        User user = userDAO.findById(u_id);
+        return user;
     }
 
     public List<Products> userproducts(ProductService productService){

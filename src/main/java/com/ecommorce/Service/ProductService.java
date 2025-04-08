@@ -4,6 +4,8 @@ import com.ecommorce.Entity.Products;
 import com.ecommorce.repository.ProductDAO;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +25,20 @@ public class ProductService {
         return productDAO.findAll();
     }
 
-    public Products deleteprod(int pid){
-        return productDAO.findById(pid);
+    public Products deleteProduct(int p_id){
+        Products p = productDAO.findById(p_id);
+        if(p != null){
+            productDAO.deleteById(p_id);
+            return p;
+        }
+        return null;
+    }
+
+    public Page<Products> listOfProducts(Pageable pageable){
+        return productDAO.findAll(pageable);
+    }
+
+    public List<Products> searchProduct(String name){
+        return productDAO.findByName(name);
     }
 }

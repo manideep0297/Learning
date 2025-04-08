@@ -10,6 +10,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int cid;
     public String cname;
+
     @OneToMany(mappedBy = "category",cascade =CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Products> products;
 
