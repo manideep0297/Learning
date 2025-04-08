@@ -1,47 +1,38 @@
 package com.ecommorce.controller;
 
-import com.ecommorce.Entity.Products;
-import com.ecommorce.Service.AddCartService;
-import com.ecommorce.Service.ProductService;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.ecommorce.Entity.User;
+import com.ecommorce.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.text.html.Option;
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class ECommerceController {
 
     @Autowired
-    private AddCartService addCartService;
-
-    @Autowired
-    private ProductService productService;
+    public UserService userService;
 
 
+    @PostMapping("/creatuser")
+    public User newuser(@RequestBody User user){
+        User userService1 = userService.createuser(user);
+        return userService1;
+    }
 
-    @PostMapping("/addToCart")
-    public ResponseEntity<String> addToCart(@RequestBody Products products) {
-        Optional product = productService.exists(products.getPid());
-        if(product.isPresent()){
-            addCartService.addToCart((Products) product.get());
-            return ResponseEntity.ok("Product Added");
+    @GetMapping("/getuser/{id}")
+    public User Vefuser(@PathVariable int uid){
+        User userService2 = userService.Verifyuser(uid);
+        if(userService2!= null){
+            return userService2;
         }
-        return ResponseEntity.ok("Product Not Added");
+       return null;
     }
-
-   // anirudh implements delete mapping
-
-
-    @GetMapping("/getAllCarts")
-    public List<Products> getAllCarts() {
-        return addCartService.getListProd();
-    }
-
 }
+
+
+
+
+
+
 
 /*
 Basic E-Commerce
