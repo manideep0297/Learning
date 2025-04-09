@@ -1,0 +1,17 @@
+Spring Security
+
+for handling authentication, authorization, protection (CSRF, SSRF etc)
+
+authentication -> to check if user is accessed to the system..
+
+authorization -> once he accessed the system what is his role/what he should see in system
+
+It provides default login
+
+SecurityFilterChain -> it checks every request coming to our application
+
+localhost -> securityfilter it will authenticate then authorize then it will show -> show/don't show
+
+security starter
+
+In depth -> overview

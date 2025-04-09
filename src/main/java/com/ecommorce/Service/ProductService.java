@@ -39,6 +39,6 @@ public class ProductService {
     }
 
     public List<Products> searchProduct(String name){
-        return productDAO.findByName(name);
+        return productDAO.findByNameContainingIgnoreCase(name);
     }
 }

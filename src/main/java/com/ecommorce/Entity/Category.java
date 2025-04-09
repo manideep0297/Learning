@@ -1,5 +1,7 @@
 package com.ecommorce.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,7 +13,8 @@ public class Category {
     public int cid;
     public String cname;
 
-    @OneToMany(mappedBy = "category",cascade =CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category",cascade =CascadeType.ALL)
+    @JsonIgnore
     public List<Products> products;
 
     public int getCid() {
@@ -39,4 +42,20 @@ public class Category {
 //    }
 }
 
+/*
 
+serialization -> if u want to ignore while serialization - jsonBackreference
+                 if u want to serialize - jsonManagedReference
+
+bidirectional
+
+
+Jackson - Java object -> json it is because of jackson
+
+
+
+In java everything is in object -> convert java object to XML, JSON, BinaryStream ==== serialization
+
+
+
+ */

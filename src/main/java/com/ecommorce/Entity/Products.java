@@ -1,5 +1,6 @@
 package com.ecommorce.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -52,7 +53,7 @@ public class Products {
 
     @ManyToOne
     @JoinColumn(name="cid")
-    public  Category category;
+    public Category category;
     public double price;
     public int quantity;
 
@@ -60,3 +61,6 @@ public class Products {
 
 //  DB -> filter -> DTO
 //  DB -> user json -> filter
+/*
+
+ */

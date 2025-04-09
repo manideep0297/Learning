@@ -80,9 +80,10 @@ public class ECommerceController {
     }
 
     //This is to get all products
+    // few cust access
     @GetMapping("/getAllProducts")
     public Page<Products> getAllProducts(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "2") int size,@RequestParam(defaultValue = "pid") String sort) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort)); // how u want to request the page by passing these pageno, size, sort
         return productService.listOfProducts(pageable);
     }
 

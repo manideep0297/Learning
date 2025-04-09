@@ -14,5 +14,11 @@ public interface ProductDAO extends JpaRepository<Products, Integer> {
 
     List<Products> findByName(String name);
 
+    List<Products> findByNameContainingIgnoreCase(String name);
+
+    /* ur task to implement some kind of sql functionalities */
+
+    /* Group by / order by / having */
+
 
 }
